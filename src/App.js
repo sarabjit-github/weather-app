@@ -81,16 +81,17 @@ function App() {
   let getCoordinates = async () => {
     showLoader();
     try {
-      let cityApiUrl = `https://api.positionstack.com/v1/forward?access_key=e6826afada8df1c29a21ccf187ab1193&query=${searchValue}&limit=1&output=json`;
+      // let cityApiUrl = `https://api.positionstack.com/v1/forward?access_key=e6826afada8df1c29a21ccf187ab1193&query=${searchValue}&limit=1&output=json`;
+      let cityApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchValue}&limit=1&appid=93c598c1f4e237f31d8fef66f143dcd6`
       let resCityApi = await fetch(cityApiUrl);
       const resCityApiData = await resCityApi.json();
       hideLoader();
-      const { latitude, longitude } = resCityApiData.data[0];
+      const { lat: latitude, lon: longitude } = resCityApiData.data[0];
       const latLon = {
         latitude,
         longitude,
       };
-      const { name: cityName, country_code } = resCityApiData.data[0];
+      const { name: cityName, country: country_code } = resCityApiData.data[0];
       const myCityName = { cityName, country_code };
       setCityName(myCityName);
       setCoordinateStore(latLon);
