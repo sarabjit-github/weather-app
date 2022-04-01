@@ -81,7 +81,7 @@ function App() {
   let getCoordinates = async () => {
     showLoader();
     try {
-      let cityApiUrl = `http://api.positionstack.com/v1/forward?access_key=e6826afada8df1c29a21ccf187ab1193&query=${searchValue}&limit=1&output=json`;
+      let cityApiUrl = `https://api.positionstack.com/v1/forward?access_key=e6826afada8df1c29a21ccf187ab1193&query=${searchValue}&limit=1&output=json`;
       let resCityApi = await fetch(cityApiUrl);
       const resCityApiData = await resCityApi.json();
       hideLoader();
